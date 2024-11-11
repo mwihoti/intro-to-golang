@@ -1,15 +1,13 @@
 package main
 
-import "fmt"
-
+import (
+    "fmt"
+    "stackup.dev/intro-to-golang/goFun"
+)
 func main() {
-	helloWorld1 := "Hello, World!"
-	fmt.Println(helloWorld1)
-	var helloWorld2 = "Hello, world2!"
-	fmt.Println(helloWorld2)
-	const hw = "Hello, World __ hw!"
-	fmt.Println(hw)
-	var assignFromConst = hw
-	fmt.Println(assignFromConst)
-	fmt.Println("Hello, World!")  // This should print an output
+	sum := goFun.Add(5, 8)
+	fmt.Println("The sum is", sum)
+
+	greetings := goFun.Hello("Mwihoti");
+	fmt.Println(greetings)
 }
