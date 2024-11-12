@@ -3,6 +3,10 @@ package main
 import (
     "fmt"
     "stackup.dev/intro-to-golang/goFun"
+	"runtime"
+	"log"
+
+	"github.com/elastic/go-sysinfo"
 )
 
 func is_legal_age(age int) (msg string, legal bool) {
@@ -28,6 +32,13 @@ func is_rich(rich bool) string {
 	return m
 }
 
+func forLoop(c string) string {
+	m := "Daniel"
+	for i := 0; i < len(m); i++ {
+		fmt.Println(string(m[i]))
+	}
+	return m
+}
 func main() {
 	sum := goFun.Add(5, 8)
 	fmt.Println("The sum is", sum)
@@ -54,4 +65,30 @@ func main() {
 	fmt.Println(richMsg)
 
 
+	fmt.Println("Go runs on ")
+	switch os := runtime.GOOS; os {
+	case "darwin":
+		fmt.Println("OS X.")
+	case "linux":
+		fmt.Println("Linux.")
+	
+	default:
+		fmt.Printf("%s.\n", os)
+	}
+
+	result := forLoop("Daniel")
+	fmt.Println("forLoop result:", result)
+
+
+	host, err := sysinfo.Host()
+	if err != nil {
+		log.Fatalln(err)
+	} else {
+		info := host.Info()
+        fmt.Println("Hostname:", info.Hostname)
+        fmt.Println("OS:", info.OS)
+       
+        fmt.Println("Kernel Version:", info.KernelVersion)
+        fmt.Println("MAC Addresses:", info.MACs)
+	}
 }
